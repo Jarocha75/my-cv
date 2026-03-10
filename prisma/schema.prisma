@@ -30,3 +30,14 @@ model Skill {
   category String // napr. "Frontend", "Backend", "Nástroje"
   level    Int    // 1 až 5
 }
+
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  techStack   String[] 
+  githubUrl   String?
+  liveUrl     String?
+  imageUrl    String?  
+  createdAt   DateTime @default(now())
+}
