@@ -7,6 +7,7 @@ import {
   CardContent,
   Stack,
 } from "@mui/material";
+import dayjs from "dayjs";
 
 export default async function HomePage() {
   const experiences = await prisma.experience.findMany({
@@ -30,9 +31,9 @@ export default async function HomePage() {
                 {exp.company}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                {new Date(exp.startDate).toLocaleDateString()} -
+                {dayjs(exp.startDate).format("MMMM YYYY")} -{" "}
                 {exp.endDate
-                  ? new Date(exp.endDate).toLocaleDateString()
+                  ? dayjs(exp.endDate).format("MMMM YYYY")
                   : "Súčasnosť"}
               </Typography>
               <Box sx={{ mt: 2 }}>
