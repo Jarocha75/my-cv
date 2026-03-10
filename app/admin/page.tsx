@@ -1,8 +1,29 @@
-import { Container, Typography, TextField, Box, Paper } from '@mui/material';
+'use client';
+
+import {
+  Container,
+  Typography,
+  TextField,
+  Box,
+  Paper,
+  Stack,
+} from '@mui/material';
 import { createProject } from './actions';
 import SubmitButton from './SubmitButton';
+import { toast } from 'sonner';
 
 export default function AdminPage() {
+  async function clientAction(formData: FormData) {
+    const result = await createProject(formData);
+
+    if (result?.success) {
+      toast.success('Projekt bol úspešne pridaný!');
+      (document.getElementById('project-form') as HTMLFormElement).reset();
+    } else {
+      toast.error(result?.error || 'Niekde nastala chyba');
+    }
+  }
+
   return (
     <Container maxWidth="sm" sx={{ py: 8 }}>
       <Paper sx={{ p: 4 }}>
@@ -11,8 +32,9 @@ export default function AdminPage() {
         </Typography>
 
         <Box
+          id="project-form"
           component="form"
-          action={createProject}
+          action={clientAction}
           sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}
         >
           <TextField name="title" label="Názov projektu" required fullWidth />
@@ -30,6 +52,16 @@ export default function AdminPage() {
             placeholder="Next.js, Prisma, MUI"
             fullWidth
           />
+
+          <Stack direction="row" spacing={2}>
+            <TextField name="githubUrl" label="GitHub URL" fullWidth />
+            <TextField
+              name="imageUrl"
+              label="Image URL"
+              placeholder="https://..."
+              fullWidth
+            />
+          </Stack>
           <SubmitButton />
         </Box>
       </Paper>
