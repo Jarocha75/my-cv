@@ -1,4 +1,3 @@
-import prisma from "@/lib/prisma";
 import {
   Container,
   Typography,
@@ -6,56 +5,81 @@ import {
   Card,
   CardContent,
   Stack,
-} from "@mui/material";
-import dayjs from "dayjs";
-import Sidebar from "@/app/components/Sidebar";
+  Grid,
+  Avatar,
+} from '@mui/material';
+import Sidebar from '@/app/components/Sidebar';
+import { aboutSections } from '@/app/data/about';
 
 export default async function HomePage() {
-  const experiences = await prisma.experience.findMany({
-    orderBy: { startDate: "desc" },
-  });
-
   return (
     <Container maxWidth="lg" sx={{ py: 8 }}>
-      <Typography variant="h2" component="h1" gutterBottom align="center">
-        Môj Profesionálny Životopis
-      </Typography>
+      <Grid container spacing={4} alignItems="flex-start">
+        <Grid size={{ xs: 12, md: 4, lg: 3 }}>
+          <Sidebar />
+        </Grid>
 
-      <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, gap: 4, mt: 4, alignItems: "flex-start" }}>
-        <Sidebar />
+        <Grid size={{ xs: 12, md: 8, lg: 9 }}>
+          <Stack spacing={3} sx={{ pl: { md: 4 } }}>
+            <Box sx={{ mb: 2 }}>
+              <Typography variant="h3" fontWeight={800} gutterBottom>
+                Kto som?
+              </Typography>
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                sx={{ fontSize: '1.1rem' }}
+              >
+                Zatiaľ Frontend vývojár, ktorý verí, že kód by mal byť rovnako
+                krásny ako funkčný.
+              </Typography>
+            </Box>
 
-        <Box sx={{ flex: 1 }}>
-          <Stack spacing={3}>
-            {experiences.map((exp) => (
-              <Card key={exp.id} variant="outlined">
-                <CardContent>
-                  <Typography variant="h5" color="primary">
-                    {exp.position}
-                  </Typography>
-                  <Typography variant="subtitle1" fontWeight="bold">
-                    {exp.company}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {dayjs(exp.startDate).format("MMMM YYYY")} -{" "}
-                    {exp.endDate
-                      ? dayjs(exp.endDate).format("MMMM YYYY")
-                      : "Súčasnosť"}
-                  </Typography>
-                  <Box sx={{ mt: 2 }}>
-                    <Typography variant="body1">{exp.description}</Typography>
+            {aboutSections.map((section) => (
+              <Card
+                key={section.id}
+                variant="outlined"
+                sx={{
+                  borderRadius: 3,
+                  transition: 'transform 0.2s',
+                  '&:hover': {
+                    transform: 'translateY(-4px)',
+                    borderColor: section.color,
+                  },
+                }}
+              >
+                <CardContent
+                  sx={{ display: 'flex', gap: 3, alignItems: 'flex-start' }}
+                >
+                  <Avatar
+                    sx={{
+                      bgcolor: `${section.color}20`,
+                      color: section.color,
+                      width: 50,
+                      height: 50,
+                    }}
+                  >
+                    <section.icon />
+                  </Avatar>
+
+                  <Box>
+                    <Typography variant="h5" fontWeight={700} gutterBottom>
+                      {section.title}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.7 }}
+                    >
+                      {section.content}
+                    </Typography>
                   </Box>
                 </CardContent>
               </Card>
             ))}
-
-            {experiences.length === 0 && (
-              <Typography align="center" color="text.secondary">
-                Zatiaľ tu nie sú žiadne skúsenosti. Pridaj ich v DataGripe!
-              </Typography>
-            )}
           </Stack>
-        </Box>
-      </Box>
+        </Grid>
+      </Grid>
     </Container>
   );
 }
