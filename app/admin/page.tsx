@@ -58,7 +58,7 @@ export default function AdminPage() {
             <TextField
               name="imageUrl"
               label="Image URL"
-              placeholder="https://..."
+              placeholder="/images/nazov-suboru.png"
               fullWidth
             />
           </Stack>

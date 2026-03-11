@@ -4,6 +4,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import MenuIcon from '@mui/icons-material/Menu';
 import {
   AppBar,
+  Avatar,
   Box,
   Button,
   Drawer,
@@ -46,20 +47,17 @@ const NavBar = () => {
         }}
       >
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Typography
-            variant="h6"
-            component={NextLink}
-            href="/"
+          <Avatar
+            src="/tvoja-fotka.jpg"
             sx={{
-              fontWeight: 800,
-              cursor: 'pointer',
-              textDecoration: 'none',
-              color: 'inherit',
+              width: 56,
+              height: 56,
+              border: '2px solid',
+              borderColor: 'primary.main',
             }}
           >
-            Jaro Dev
-          </Typography>
-
+            JP
+          </Avatar>
           <Box
             sx={{
               display: { xs: 'none', md: 'flex' },

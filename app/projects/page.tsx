@@ -16,7 +16,7 @@ import LaunchIcon from '@mui/icons-material/Launch';
 
 export default async function ProjectsPage() {
   const projects = await prisma.project.findMany({
-    orderBy: { createdAt: 'desc' },
+    orderBy: { createdAt: 'asc' },
   });
 
   return (
