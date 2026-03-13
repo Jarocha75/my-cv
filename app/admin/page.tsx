@@ -7,6 +7,8 @@ import {
   Box,
   Paper,
   Stack,
+  FormControlLabel,
+  Checkbox,
 } from '@mui/material';
 import { createProject } from './actions';
 import SubmitButton from './SubmitButton';
@@ -52,6 +54,11 @@ export default function AdminPage() {
             placeholder="Next.js, Prisma, MUI"
             fullWidth
           />
+          <FormControlLabel
+            control={<Checkbox name="isFeatured" color="primary" />}
+            label="Označiť ako hlavný projekt (Featured)"
+            sx={{ mb: 2, display: 'block' }}
+          />
 
           <Stack direction="row" spacing={2}>
             <TextField name="githubUrl" label="GitHub URL" fullWidth />
@@ -59,6 +66,12 @@ export default function AdminPage() {
               name="imageUrl"
               label="Image URL"
               placeholder="/images/nazov-suboru.png"
+              fullWidth
+            />
+            <TextField
+              name="videoUrl"
+              label="Video URL"
+              placeholder="/videos/vision-demo.WebM"
               fullWidth
             />
           </Stack>

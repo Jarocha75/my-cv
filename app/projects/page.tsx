@@ -16,7 +16,7 @@ import LaunchIcon from '@mui/icons-material/Launch';
 
 export default async function ProjectsPage() {
   const projects = await prisma.project.findMany({
-    orderBy: { createdAt: 'asc' },
+    orderBy: [{ isFeatured: 'desc' }, { createdAt: 'asc' }],
   });
 
   return (
@@ -33,18 +33,36 @@ export default async function ProjectsPage() {
 
       <Grid container spacing={4}>
         {projects.map((project) => (
-          <Grid size={{ xs: 12, sm: 6, md: 4 }} key={project.id}>
+          <Grid
+            key={project.id}
+            size={{
+              xs: 12,
+              md: project.isFeatured ? 12 : 6,
+              lg: project.isFeatured ? 12 : 4,
+            }}
+          >
             <Card
               sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
             >
               <CardMedia
-                component="img"
-                height="180"
+                component={project.videoUrl ? 'video' : 'img'}
+                height="240"
                 image={
-                  project.imageUrl ||
-                  'https://via.placeholder.com/400x200?text=Projekt'
+                  !project.videoUrl
+                    ? project.imageUrl ||
+                      'https://via.placeholder.com/400x200?text=Projekt'
+                    : undefined
                 }
+                src={project.videoUrl ? project.videoUrl : undefined}
                 alt={project.title}
+                controls={!!project.videoUrl}
+                autoPlay={!!project.videoUrl}
+                muted={!!project.videoUrl}
+                loop={!!project.videoUrl}
+                sx={{
+                  objectFit: 'cover',
+                  height: project.isFeatured ? 350 : 200,
+                }}
               />
               <CardContent sx={{ flexGrow: 1 }}>
                 <Typography gutterBottom variant="h5" component="h2">

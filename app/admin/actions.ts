@@ -9,6 +9,8 @@ export async function createProject(formData: FormData) {
   const techStackString = formData.get('techStack') as string;
   const githubUrl = formData.get('githubUrl') as string;
   const imageUrl = formData.get('imageUrl') as string;
+  const videoUrl = formData.get('videoUrl') as string;
+  const isFeatured = formData.get('isFeatured') === 'on';
 
   const techStack = techStackString
     ? techStackString.split(',').map((s) => s.trim())
@@ -22,6 +24,8 @@ export async function createProject(formData: FormData) {
         techStack,
         githubUrl: githubUrl || null,
         imageUrl: imageUrl || null,
+        videoUrl: videoUrl || null,
+        isFeatured,
       },
     });
 

@@ -39,5 +39,7 @@ model Project {
   githubUrl   String?
   liveUrl     String?
   imageUrl    String?  
+  videoUrl    String?
+  isFeatured  Boolean @default(false)
   createdAt   DateTime @default(now())
 }
