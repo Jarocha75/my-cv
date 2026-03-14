@@ -4,20 +4,17 @@ import {
   Grid,
   Card,
   CardContent,
-  TextField,
   Button,
   Box,
   Divider,
   Paper,
   Stack,
 } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
-import { createEntry } from './actions';
+import GuestbookForm from './GuestbookForm';
 import prisma from '@/lib/prisma';
 import { contactCards } from '@/app/data/contact';
 
-const GUESTBOOK_FORM_BG = '#f9f9f9';
-const GUESTBOOK_ENTRY_BORDER = '4px solid #1976d2';
+const GUESTBOOK_ENTRY_BORDER = '4px solid #3b82f6';
 
 const TEXT = {
   pageTitle: 'Kontakt',
@@ -25,9 +22,6 @@ const TEXT = {
   guestbookTitle: 'Návštevná kniha ✍️',
   guestbookDescription:
     'Nechaj mi tu odkaz, že si tu bol! Dáta sa ukladajú cez Prismu do Postgresu.',
-  fieldName: 'Meno',
-  fieldMessage: 'Správa',
-  submitButton: 'Odoslať odkaz',
   entriesTitle: 'Posledné odkazy:',
   noEntries: 'Zatiaľ žiadne správy.',
 };
@@ -50,7 +44,6 @@ export default async function ContactPage() {
         {TEXT.pageTitle}
       </Typography>
 
-      {/* 1. SEKCIA: KONTAKTNÉ KARTY */}
       <Grid container spacing={3} sx={{ mb: 8, mt: 2 }}>
         {contactCards.map((item) => (
           <Grid size={{ xs: 12, sm: 4 }} key={item.title}>
@@ -98,36 +91,12 @@ export default async function ContactPage() {
           <Paper
             elevation={0}
             variant="outlined"
-            sx={{ p: 3, bgcolor: GUESTBOOK_FORM_BG }}
+            sx={{
+                p: 3,
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+              }}
           >
-            <form action={createEntry}>
-              <Stack spacing={2}>
-                <TextField
-                  name="name"
-                  label={TEXT.fieldName}
-                  fullWidth
-                  required
-                  variant="filled"
-                />
-                <TextField
-                  name="message"
-                  label={TEXT.fieldMessage}
-                  fullWidth
-                  multiline
-                  rows={3}
-                  required
-                  variant="filled"
-                />
-                <Button
-                  type="submit"
-                  variant="contained"
-                  endIcon={<SendIcon />}
-                  size="large"
-                >
-                  {TEXT.submitButton}
-                </Button>
-              </Stack>
-            </form>
+            <GuestbookForm />
           </Paper>
         </Grid>
 
@@ -149,7 +118,7 @@ export default async function ContactPage() {
                 </Typography>
                 <Typography variant="body2">{entry.message}</Typography>
                 <Typography variant="caption" color="text.disabled">
-                  {new Date(entry.createdAt).toLocaleDateString()}
+                  {new Date(entry.createdAt).toLocaleDateString('sk-SK')}
                 </Typography>
               </Paper>
             ))}

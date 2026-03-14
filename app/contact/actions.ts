@@ -2,16 +2,28 @@
 
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
+import { z } from 'zod';
+import { guestbookSchema, GuestbookFormState } from '@/lib/validations/contact';
 
-export async function createEntry(formData: FormData) {
-  const name = formData.get('name') as string;
-  const message = formData.get('message') as string;
+export async function createEntry(
+  _prevState: GuestbookFormState,
+  formData: FormData
+): Promise<GuestbookFormState> {
+  const raw = {
+    name: formData.get('name') as string,
+    message: formData.get('message') as string,
+  };
 
-  if (!name || !message) return;
+  const result = guestbookSchema.safeParse(raw);
+
+  if (!result.success) {
+    return { errors: z.flattenError(result.error).fieldErrors };
+  }
 
   await prisma.guestbookEntry.create({
-    data: { name, message },
+    data: result.data,
   });
 
-  revalidatePath('contact');
+  revalidatePath('/contact');
+  return { success: true };
 }
