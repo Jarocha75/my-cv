@@ -5,6 +5,7 @@ import ThemeRegistry from '@/app/components/ThemeRegistry';
 import Navbar from '@/app/components/NavBar';
 import './globals.css';
 import { Toaster } from 'sonner';
+import Footer from './Footer';
 
 const geist = Geist({ subsets: ['latin'] });
 
@@ -34,6 +35,7 @@ export default function RootLayout({
             <Container maxWidth="lg" sx={{ mt: 6 }}>
               {children}
             </Container>
+            <Footer />
           </Box>
         </ThemeRegistry>
       </body>
