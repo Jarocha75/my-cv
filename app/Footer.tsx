@@ -43,7 +43,7 @@ const Footer = () => {
 
           <Stack direction="row" spacing={1}>
             <IconButton
-              href="https://github.com/tvoj-profil"
+              href="https://github.com/Jarocha75"
               target="_blank"
               color="inherit"
               sx={{ '&:hover': { color: 'primary.main' } }}
@@ -51,7 +51,7 @@ const Footer = () => {
               <GitHubIcon />
             </IconButton>
             <IconButton
-              href="https://linkedin.com/in/tvoj-profil"
+              href="https://linkedin.com/in/jaroslav-pecha-525b4a39b"
               target="_blank"
               color="inherit"
               sx={{ '&:hover': { color: 'primary.main' } }}
@@ -59,7 +59,7 @@ const Footer = () => {
               <LinkedInIcon />
             </IconButton>
             <IconButton
-              href="mailto:tvoj@email.com"
+              href="mailto:jarocha75@gmail.com"
               color="inherit"
               sx={{ '&:hover': { color: 'primary.main' } }}
             >
