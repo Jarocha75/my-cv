@@ -15,6 +15,10 @@ import prisma from '@/lib/prisma';
 import { contactCards } from '@/app/data/contact';
 
 const GUESTBOOK_ENTRY_BORDER = '4px solid #3b82f6';
+const GUESTBOOK_ENTRIES_LIMIT = 5;
+const LOCALE = 'sk-SK';
+const CARD_HOVER_TRANSITION = '0.3s';
+const PAPER_BORDER = '1px solid rgba(255, 255, 255, 0.08)';
 
 const TEXT = {
   pageTitle: 'Kontakt',
@@ -29,7 +33,7 @@ const TEXT = {
 export default async function ContactPage() {
   const entries = await prisma.guestbookEntry.findMany({
     orderBy: { createdAt: 'desc' },
-    take: 5,
+    take: GUESTBOOK_ENTRIES_LIMIT,
   });
 
   return (
@@ -51,7 +55,7 @@ export default async function ContactPage() {
               sx={{
                 textAlign: 'center',
                 height: '100%',
-                transition: '0.3s',
+                transition: CARD_HOVER_TRANSITION,
                 '&:hover': { transform: 'translateY(-5px)', boxShadow: 4 },
               }}
             >
@@ -93,7 +97,7 @@ export default async function ContactPage() {
             variant="outlined"
             sx={{
                 p: 3,
-                border: '1px solid rgba(255, 255, 255, 0.08)',
+                border: PAPER_BORDER,
               }}
           >
             <GuestbookForm />
@@ -118,7 +122,7 @@ export default async function ContactPage() {
                 </Typography>
                 <Typography variant="body2">{entry.message}</Typography>
                 <Typography variant="caption" color="text.disabled">
-                  {new Date(entry.createdAt).toLocaleDateString('sk-SK')}
+                  {new Date(entry.createdAt).toLocaleDateString(LOCALE)}
                 </Typography>
               </Paper>
             ))}

@@ -10,6 +10,10 @@ import {
   Paper,
 } from '@mui/material';
 
+const SKELETON_CONTACT_CARDS = [1, 2, 3];
+const SKELETON_ENTRIES = [1, 2, 3];
+const GUESTBOOK_ENTRY_BORDER = '4px solid rgba(59,130,246,0.3)';
+
 export default function Loading() {
   return (
     <Container maxWidth="md" sx={{ py: 8 }}>
@@ -18,7 +22,7 @@ export default function Loading() {
       </Typography>
 
       <Grid container spacing={3} sx={{ mb: 8, mt: 2 }}>
-        {[1, 2, 3].map((i) => (
+        {SKELETON_CONTACT_CARDS.map((i) => (
           <Grid key={i} size={{ xs: 12, sm: 4 }}>
             <Card sx={{ textAlign: 'center', height: '100%' }}>
               <CardContent>
@@ -82,10 +86,10 @@ export default function Loading() {
             <Skeleton width="50%" animation="wave" />
           </Typography>
           <Stack spacing={2} sx={{ mt: 1 }}>
-            {[1, 2, 3].map((i) => (
+            {SKELETON_ENTRIES.map((i) => (
               <Paper
                 key={i}
-                sx={{ p: 2, borderLeft: '4px solid rgba(59,130,246,0.3)' }}
+                sx={{ p: 2, borderLeft: GUESTBOOK_ENTRY_BORDER }}
               >
                 <Skeleton width="40%" height={20} animation="wave" />
                 <Skeleton width="90%" animation="wave" />

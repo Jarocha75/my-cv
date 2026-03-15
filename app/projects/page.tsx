@@ -14,6 +14,19 @@ import {
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LaunchIcon from '@mui/icons-material/Launch';
 
+const TEXT = {
+  pageTitle: 'Moje Projekty',
+  githubButton: 'GitHub',
+  liveDemoButton: 'Live Demo',
+};
+
+const PLACEHOLDER_IMAGE = 'https://via.placeholder.com/400x200?text=Projekt';
+
+const CARD_MEDIA_HEIGHT = {
+  featured: 350,
+  regular: 200,
+};
+
 export default async function ProjectsPage() {
   const projects = await prisma.project.findMany({
     orderBy: [{ isFeatured: 'desc' }, { createdAt: 'asc' }],
@@ -28,7 +41,7 @@ export default async function ProjectsPage() {
         align="center"
         sx={{ mb: 6 }}
       >
-        Moje Projekty
+        {TEXT.pageTitle}
       </Typography>
 
       <Grid container spacing={4}>
@@ -49,8 +62,7 @@ export default async function ProjectsPage() {
                 height="240"
                 image={
                   !project.videoUrl
-                    ? project.imageUrl ||
-                      'https://via.placeholder.com/400x200?text=Projekt'
+                    ? project.imageUrl || PLACEHOLDER_IMAGE
                     : undefined
                 }
                 src={project.videoUrl ? project.videoUrl : undefined}
@@ -61,7 +73,7 @@ export default async function ProjectsPage() {
                 loop={!!project.videoUrl}
                 sx={{
                   objectFit: 'cover',
-                  height: project.isFeatured ? 350 : 200,
+                  height: project.isFeatured ? CARD_MEDIA_HEIGHT.featured : CARD_MEDIA_HEIGHT.regular,
                 }}
               />
               <CardContent sx={{ flexGrow: 1 }}>
@@ -95,7 +107,7 @@ export default async function ProjectsPage() {
                     href={project.githubUrl}
                     target="_blank"
                   >
-                    GitHub
+                    {TEXT.githubButton}
                   </Button>
                 )}
                 {project.liveUrl && (
@@ -106,7 +118,7 @@ export default async function ProjectsPage() {
                     target="_blank"
                     color="secondary"
                   >
-                    Live Demo
+                    {TEXT.liveDemoButton}
                   </Button>
                 )}
               </CardActions>

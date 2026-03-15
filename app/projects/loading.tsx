@@ -8,6 +8,10 @@ import {
   Box,
 } from '@mui/material';
 
+const SKELETON_PROJECTS = [1, 2, 3, 4];
+const FEATURED_MEDIA_HEIGHT = 350;
+const REGULAR_MEDIA_HEIGHT = 200;
+
 export default function Loading() {
   return (
     <Container maxWidth="lg" sx={{ py: 8 }}>
@@ -21,7 +25,7 @@ export default function Loading() {
             <Skeleton
               variant="rectangular"
               width="100%"
-              height={350}
+              height={FEATURED_MEDIA_HEIGHT}
               animation="wave"
             />
             <CardContent>
@@ -54,7 +58,7 @@ export default function Loading() {
           </Card>
         </Grid>
 
-        {[1, 2, 3, 4].map((i) => (
+        {SKELETON_PROJECTS.map((i) => (
           <Grid key={i} size={{ xs: 12, md: 6, lg: 4 }}>
             <Card
               sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
@@ -62,7 +66,7 @@ export default function Loading() {
               <Skeleton
                 variant="rectangular"
                 width="100%"
-                height={200}
+                height={REGULAR_MEDIA_HEIGHT}
                 animation="wave"
               />
               <CardContent sx={{ flexGrow: 1 }}>

@@ -26,6 +26,14 @@ const navItems = [
   { label: 'Contact', href: '/contact' },
 ];
 
+const AVATAR_SRC = '/tvoja-fotka.jpg';
+const AVATAR_INITIALS = 'JP';
+const AVATAR_SIZE = 56;
+const DRAWER_WIDTH = 240;
+const GITHUB_URL = 'https://github.com/Jarocha75';
+const BACKDROP_BLUR = 'blur(10px)';
+const TEXT = { mobileMenuTitle: 'Menu' };
+
 const NavBar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -41,22 +49,22 @@ const NavBar = () => {
         sx={{
           backgroundColor: (theme) =>
             alpha(theme.palette.background.default, 0.8),
-          backdropFilter: 'blur(10px)',
+          backdropFilter: BACKDROP_BLUR,
           borderBottom: '1px solid',
           borderColor: 'divider',
         }}
       >
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Avatar
-            src="/tvoja-fotka.jpg"
+            src={AVATAR_SRC}
             sx={{
-              width: 56,
-              height: 56,
+              width: AVATAR_SIZE,
+              height: AVATAR_SIZE,
               border: '2px solid',
               borderColor: 'primary.main',
             }}
           >
-            JP
+            {AVATAR_INITIALS}
           </Avatar>
           <Box
             sx={{
@@ -87,7 +95,7 @@ const NavBar = () => {
             >
               <IconButton
                 color="primary"
-                href="https://github.com/Jarocha75"
+                href={GITHUB_URL}
                 target="_blank"
               >
                 <GitHubIcon />
@@ -109,12 +117,12 @@ const NavBar = () => {
         onClose={handleDrawerToggle}
         anchor="right"
         PaperProps={{
-          sx: { width: 240, backgroundColor: 'background.default' },
+          sx: { width: DRAWER_WIDTH, backgroundColor: 'background.default' },
         }}
       >
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', pt: 2 }}>
           <Typography variant="h6" sx={{ my: 2, fontWeight: 700 }}>
-            Menu
+            {TEXT.mobileMenuTitle}
           </Typography>
           <List>
             {navItems.map((item) => (

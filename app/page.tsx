@@ -11,6 +11,19 @@ import {
 import Sidebar from '@/app/components/Sidebar';
 import { aboutSections } from '@/app/data/about';
 
+const TEXT = {
+  heading: 'Kto som?',
+  intro:
+    'Zatiaľ Frontend vývojár, ktorý verí, že kód by mal byť rovnako krásny ako funkčný.',
+};
+
+const AVATAR_SIZE = 50;
+
+const CARD_HOVER_SX = {
+  transition: 'transform 0.2s',
+  '&:hover': { transform: 'translateY(-4px)' },
+} as const;
+
 export default async function HomePage() {
   return (
     <Container maxWidth="lg" sx={{ py: 8 }}>
@@ -23,15 +36,14 @@ export default async function HomePage() {
           <Stack spacing={3} sx={{ pl: { md: 4 } }}>
             <Box sx={{ mb: 2 }}>
               <Typography variant="h3" fontWeight={800} gutterBottom>
-                Kto som?
+                {TEXT.heading}
               </Typography>
               <Typography
                 variant="body1"
                 color="text.secondary"
                 sx={{ fontSize: '1.1rem' }}
               >
-                Zatiaľ Frontend vývojár, ktorý verí, že kód by mal byť rovnako
-                krásny ako funkčný.
+                {TEXT.intro}
               </Typography>
             </Box>
 
@@ -41,9 +53,9 @@ export default async function HomePage() {
                 variant="outlined"
                 sx={{
                   borderRadius: 3,
-                  transition: 'transform 0.2s',
+                  ...CARD_HOVER_SX,
                   '&:hover': {
-                    transform: 'translateY(-4px)',
+                    ...CARD_HOVER_SX['&:hover'],
                     borderColor: section.color,
                   },
                 }}
@@ -55,8 +67,8 @@ export default async function HomePage() {
                     sx={{
                       bgcolor: `${section.color}20`,
                       color: section.color,
-                      width: 50,
-                      height: 50,
+                      width: AVATAR_SIZE,
+                      height: AVATAR_SIZE,
                     }}
                   >
                     <section.icon />
