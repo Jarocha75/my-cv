@@ -9,6 +9,7 @@ import {
   Avatar,
 } from '@mui/material';
 import Sidebar from '@/app/components/Sidebar';
+import DownloadCVButton from '@/app/components/DownloadCVButton';
 import { aboutSections } from '@/app/data/about';
 import { getTranslations } from 'next-intl/server';
 
@@ -42,6 +43,7 @@ export default async function HomePage() {
               >
                 {t('home.intro')}
               </Typography>
+              <DownloadCVButton />
             </Box>
 
             {aboutSections.map((section) => (
