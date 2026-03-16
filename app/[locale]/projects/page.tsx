@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LaunchIcon from '@mui/icons-material/Launch';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, getLocale } from 'next-intl/server';
 
 const PLACEHOLDER_IMAGE = 'https://via.placeholder.com/400x200?text=Projekt';
 
@@ -24,6 +24,7 @@ const CARD_MEDIA_HEIGHT = {
 
 export default async function ProjectsPage() {
   const t = await getTranslations('projects');
+  const locale = await getLocale();
   const projects = await prisma.project.findMany({
     orderBy: [{ isFeatured: 'desc' }, { createdAt: 'asc' }],
   });
@@ -74,14 +75,14 @@ export default async function ProjectsPage() {
               />
               <CardContent sx={{ flexGrow: 1 }}>
                 <Typography gutterBottom variant="h5" component="h2">
-                  {project.title}
+                  {locale === 'en' ? (project.titleEn ?? project.title) : project.title}
                 </Typography>
                 <Typography
                   variant="body2"
                   color="text.secondary"
                   sx={{ mb: 2 }}
                 >
-                  {project.description}
+                  {locale === 'en' ? (project.descriptionEn ?? project.description) : project.description}
                 </Typography>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
                   {project.techStack.map((tech) => (

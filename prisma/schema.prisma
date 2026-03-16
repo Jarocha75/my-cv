@@ -32,16 +32,18 @@ model Skill {
 }
 
 model Project {
-  id          String   @id @default(cuid())
-  title       String
-  description String
-  techStack   String[] 
-  githubUrl   String?
-  liveUrl     String?
-  imageUrl    String?  
-  videoUrl    String?
-  isFeatured  Boolean @default(false)
-  createdAt   DateTime @default(now())
+  id            String   @id @default(cuid())
+  title         String
+  titleEn       String?
+  description   String
+  descriptionEn String?
+  techStack     String[]
+  githubUrl     String?
+  liveUrl       String?
+  imageUrl      String?
+  videoUrl      String?
+  isFeatured    Boolean @default(false)
+  createdAt     DateTime @default(now())
 }
 
 model GuestbookEntry {
