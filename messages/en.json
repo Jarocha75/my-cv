@@ -1,0 +1,60 @@
+{
+  "nav": {
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact",
+    "mobileMenuTitle": "Menu"
+  },
+  "home": {
+    "heading": "Who am I?",
+    "intro": "A frontend developer who believes code should be as beautiful as it is functional."
+  },
+  "about": {
+    "journey": {
+      "title": "My Journey",
+      "content": "My journey into development started in January 2025, when I laid the first foundations in HTML and CSS. I quickly realized I loved creating things that people can see and use. Over the next three months, I intensively studied JavaScript to understand the logic under the hood. In June 2025, I jumped into the React ecosystem, fascinated by its component-based structure. From simple state with useState and useEffect, I gradually progressed to advanced data management with Zustand and efficient async fetching with TanStack Query. My journey is about constantly finding better ways to write clean code."
+    },
+    "motivation": {
+      "title": "Motivation",
+      "content": "I am driven by that moment when complex lines of code transform into a smooth user experience. I am fascinated by the dynamic nature of the frontend world — what was a novelty yesterday is today's standard. My motivation comes from the desire to be part of a team where I can solve real problems and constantly raise the bar of my technical skills."
+    },
+    "vision": {
+      "title": "Vision",
+      "content": "My goal is to become a versatile full-stack developer. Currently, I am focused on connecting React with a modern backend via Next.js and Prisma, while emphasizing type safety with TypeScript. In the near future, I plan to deepen my knowledge of web optimization and scalable application architecture."
+    },
+    "hobby": {
+      "title": "Hobbies",
+      "content": "When I'm not debugging the console or styling components, I enjoy sports, family time, and fitness. I believe in a healthy balance between screen time and active movement."
+    }
+  },
+  "sidebar": {
+    "skillset": "Skillset",
+    "highestSkills": "Highest skills",
+    "managingSkills": "Managing skills",
+    "languageSkills": "Language skills"
+  },
+  "projects": {
+    "pageTitle": "My Projects",
+    "githubButton": "GitHub",
+    "liveDemoButton": "Live Demo"
+  },
+  "contact": {
+    "pageTitle": "Contact",
+    "cardButtonLabel": "Open",
+    "guestbookTitle": "Guestbook ✍️",
+    "guestbookDescription": "Leave me a note that you were here! Data is stored via Prisma to PostgreSQL.",
+    "entriesTitle": "Recent messages:",
+    "noEntries": "No messages yet.",
+    "phone": "Phone"
+  },
+  "guestbookForm": {
+    "fieldName": "Name",
+    "fieldMessage": "Message",
+    "submitButton": "Send message",
+    "successMessage": "Message sent successfully!"
+  },
+  "footer": {
+    "subtitle": "Full-stack Developer specializing in Next.js and React.",
+    "description": "Jaroslav Pecha. All rights reserved. Built with Next.js & MUI."
+  }
+}

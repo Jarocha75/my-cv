@@ -17,28 +17,35 @@ import {
   Typography,
 } from '@mui/material';
 import { alpha } from '@mui/material/styles';
-import NextLink from 'next/link';
+import { useTranslations } from 'next-intl';
+import { usePathname, useRouter, Link } from '@/i18n/navigation';
 import { useState } from 'react';
 
-const navItems = [
-  { label: 'About', href: '/' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Contact', href: '/contact' },
-];
-
-const AVATAR_SRC = '/tvoja-fotka.jpg';
+const AVATAR_SRC = '';
 const AVATAR_INITIALS = 'JP';
 const AVATAR_SIZE = 56;
 const DRAWER_WIDTH = 240;
 const GITHUB_URL = 'https://github.com/Jarocha75';
 const BACKDROP_BLUR = 'blur(10px)';
-const TEXT = { mobileMenuTitle: 'Menu' };
 
 const NavBar = () => {
+  const t = useTranslations('nav');
+  const pathname = usePathname();
+  const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const navItems = [
+    { labelKey: 'about', href: '/' },
+    { labelKey: 'projects', href: '/projects' },
+    { labelKey: 'contact', href: '/contact' },
+  ] as const;
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
+  };
+
+  const handleLocaleSwitch = (locale: 'sk' | 'en') => {
+    router.replace(pathname, { locale });
   };
 
   return (
@@ -75,13 +82,13 @@ const NavBar = () => {
           >
             {navItems.map((item) => (
               <Button
-                key={item.label}
-                component={NextLink}
+                key={item.labelKey}
+                component={Link}
                 href={item.href}
                 color="inherit"
                 sx={{ borderRadius: 2, px: 2 }}
               >
-                {item.label}
+                {t(item.labelKey)}
               </Button>
             ))}
 
@@ -91,8 +98,26 @@ const NavBar = () => {
                 borderLeft: '1px solid',
                 borderColor: 'divider',
                 pl: 2,
+                display: 'flex',
+                gap: 1,
               }}
             >
+              <Button
+                size="small"
+                onClick={() => handleLocaleSwitch('sk')}
+                color="inherit"
+                sx={{ minWidth: 'auto', px: 1 }}
+              >
+                SK
+              </Button>
+              <Button
+                size="small"
+                onClick={() => handleLocaleSwitch('en')}
+                color="inherit"
+                sx={{ minWidth: 'auto', px: 1 }}
+              >
+                EN
+              </Button>
               <IconButton
                 color="primary"
                 href={GITHUB_URL}
@@ -122,21 +147,29 @@ const NavBar = () => {
       >
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', pt: 2 }}>
           <Typography variant="h6" sx={{ my: 2, fontWeight: 700 }}>
-            {TEXT.mobileMenuTitle}
+            {t('mobileMenuTitle')}
           </Typography>
           <List>
             {navItems.map((item) => (
-              <ListItem key={item.label} disablePadding>
+              <ListItem key={item.labelKey} disablePadding>
                 <ListItemButton
-                  component={NextLink}
+                  component={Link}
                   href={item.href}
                   sx={{ textAlign: 'center' }}
                 >
-                  <ListItemText primary={item.label} />
+                  <ListItemText primary={t(item.labelKey)} />
                 </ListItemButton>
               </ListItem>
             ))}
           </List>
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, mt: 2 }}>
+            <Button size="small" onClick={() => handleLocaleSwitch('sk')} color="inherit">
+              SK
+            </Button>
+            <Button size="small" onClick={() => handleLocaleSwitch('en')} color="inherit">
+              EN
+            </Button>
+          </Box>
         </Box>
       </Drawer>
     </>

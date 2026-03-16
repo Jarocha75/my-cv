@@ -13,12 +13,7 @@ import {
 } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LaunchIcon from '@mui/icons-material/Launch';
-
-const TEXT = {
-  pageTitle: 'Moje Projekty',
-  githubButton: 'GitHub',
-  liveDemoButton: 'Live Demo',
-};
+import { getTranslations } from 'next-intl/server';
 
 const PLACEHOLDER_IMAGE = 'https://via.placeholder.com/400x200?text=Projekt';
 
@@ -28,6 +23,7 @@ const CARD_MEDIA_HEIGHT = {
 };
 
 export default async function ProjectsPage() {
+  const t = await getTranslations('projects');
   const projects = await prisma.project.findMany({
     orderBy: [{ isFeatured: 'desc' }, { createdAt: 'asc' }],
   });
@@ -41,7 +37,7 @@ export default async function ProjectsPage() {
         align="center"
         sx={{ mb: 6 }}
       >
-        {TEXT.pageTitle}
+        {t('pageTitle')}
       </Typography>
 
       <Grid container spacing={4}>
@@ -107,7 +103,7 @@ export default async function ProjectsPage() {
                     href={project.githubUrl}
                     target="_blank"
                   >
-                    {TEXT.githubButton}
+                    {t('githubButton')}
                   </Button>
                 )}
                 {project.liveUrl && (
@@ -118,7 +114,7 @@ export default async function ProjectsPage() {
                     target="_blank"
                     color="secondary"
                   >
-                    {TEXT.liveDemoButton}
+                    {t('liveDemoButton')}
                   </Button>
                 )}
               </CardActions>

@@ -13,24 +13,16 @@ import {
 import GuestbookForm from './GuestbookForm';
 import prisma from '@/lib/prisma';
 import { contactCards } from '@/app/data/contact';
+import { getTranslations, getLocale } from 'next-intl/server';
 
 const GUESTBOOK_ENTRY_BORDER = '4px solid #3b82f6';
 const GUESTBOOK_ENTRIES_LIMIT = 5;
-const LOCALE = 'sk-SK';
 const CARD_HOVER_TRANSITION = '0.3s';
 const PAPER_BORDER = '1px solid rgba(255, 255, 255, 0.08)';
 
-const TEXT = {
-  pageTitle: 'Kontakt',
-  cardButtonLabel: 'Otvoriť',
-  guestbookTitle: 'Návštevná kniha ✍️',
-  guestbookDescription:
-    'Nechaj mi tu odkaz, že si tu bol! Dáta sa ukladajú cez Prismu do Postgresu.',
-  entriesTitle: 'Posledné odkazy:',
-  noEntries: 'Zatiaľ žiadne správy.',
-};
-
 export default async function ContactPage() {
+  const t = await getTranslations('contact');
+  const locale = await getLocale();
   const entries = await prisma.guestbookEntry.findMany({
     orderBy: { createdAt: 'desc' },
     take: GUESTBOOK_ENTRIES_LIMIT,
@@ -45,7 +37,7 @@ export default async function ContactPage() {
         textAlign="center"
         sx={{ fontWeight: 'bold' }}
       >
-        {TEXT.pageTitle}
+        {t('pageTitle')}
       </Typography>
 
       <Grid container spacing={3} sx={{ mb: 8, mt: 2 }}>
@@ -73,7 +65,7 @@ export default async function ContactPage() {
                   target="_blank"
                   sx={{ mt: 1 }}
                 >
-                  {TEXT.cardButtonLabel}
+                  {t('cardButtonLabel')}
                 </Button>
               </CardContent>
             </Card>
@@ -86,10 +78,10 @@ export default async function ContactPage() {
       <Grid container spacing={5}>
         <Grid size={{ xs: 12, md: 6 }}>
           <Typography variant="h5" gutterBottom sx={{ fontWeight: 'medium' }}>
-            {TEXT.guestbookTitle}
+            {t('guestbookTitle')}
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-            {TEXT.guestbookDescription}
+            {t('guestbookDescription')}
           </Typography>
 
           <Paper
@@ -106,11 +98,11 @@ export default async function ContactPage() {
 
         <Grid size={{ xs: 12, md: 6 }}>
           <Typography variant="h6" gutterBottom>
-            {TEXT.entriesTitle}
+            {t('entriesTitle')}
           </Typography>
           <Stack spacing={2}>
             {entries.length === 0 && (
-              <Typography color="text.disabled">{TEXT.noEntries}</Typography>
+              <Typography color="text.disabled">{t('noEntries')}</Typography>
             )}
             {entries.map((entry) => (
               <Paper
@@ -122,7 +114,7 @@ export default async function ContactPage() {
                 </Typography>
                 <Typography variant="body2">{entry.message}</Typography>
                 <Typography variant="caption" color="text.disabled">
-                  {new Date(entry.createdAt).toLocaleDateString(LOCALE)}
+                  {new Date(entry.createdAt).toLocaleDateString(locale)}
                 </Typography>
               </Paper>
             ))}

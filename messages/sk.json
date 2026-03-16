@@ -1,0 +1,60 @@
+{
+  "nav": {
+    "about": "O mne",
+    "projects": "Projekty",
+    "contact": "Kontakt",
+    "mobileMenuTitle": "Menu"
+  },
+  "home": {
+    "heading": "Kto som?",
+    "intro": "Zatiaľ Frontend vývojár, ktorý verí, že kód by mal byť rovnako krásny ako funkčný."
+  },
+  "about": {
+    "journey": {
+      "title": "Moja cesta",
+      "content": "Moja cesta do sveta vývoja začala v januári 2025, kedy som položil prvé základy v HTML a CSS. Rýchlo som pochopil, že ma baví tvoriť veci, ktoré ľudia vidia a používajú. Nasledujúce tri mesiace som intenzívne drtil JavaScript, aby som pochopil logiku pod kapotou. V júni 2025 som preskočil do ekosystému React, ktorý ma fascinoval svojou komponentovou štruktúrou. Od jednoduchých stavov cez useState a useEffect som sa postupne prepracoval k pokročilej správe dát pomocou Zustand a efektívnemu asynchrónnemu fetchovaniu s TanStack Query. Moja cesta je o neustálom hľadaní lepších spôsobov, ako písať čistý kód."
+    },
+    "motivation": {
+      "title": "Motivácia",
+      "content": "Poháňa ma ten moment, kedy sa zložité riadky kódu premenia na plynulý používateľský zážitok. Fascinuje ma dynamika Frontend sveta – to, čo bolo včera novinkou, je dnes štandardom. Moja motivácia pramení z túžby byť súčasťou tímu, kde môžem riešiť reálne problémy a neustále zvyšovať latku svojich technických zručností."
+    },
+    "vision": {
+      "title": "Vizie",
+      "content": "Mojím cieľom je stať sa všestranným Full-stack developerom. Aktuálne sa zameriavam na prepojenie Reactu s moderným backendom cez Next.js a Prismu, pričom kladiem dôraz na typovú bezpečnosť s TypeScriptom. V blízkej budúcnosti plánujem prehĺbiť svoje znalosti v optimalizácii webov a architektúre škálovateľných aplikácií."
+    },
+    "hobby": {
+      "title": "Hobby",
+      "content": "Keď práve neladím konzolu alebo nestylujem komponenty, rád sa venujem športu, rodine a fitness. Verím v zdravý balans medzi obrazovkou a aktívnym pohybom."
+    }
+  },
+  "sidebar": {
+    "skillset": "Skillset",
+    "highestSkills": "Highest skills",
+    "managingSkills": "Managing skills",
+    "languageSkills": "Language skills"
+  },
+  "projects": {
+    "pageTitle": "Moje Projekty",
+    "githubButton": "GitHub",
+    "liveDemoButton": "Live Demo"
+  },
+  "contact": {
+    "pageTitle": "Kontakt",
+    "cardButtonLabel": "Otvoriť",
+    "guestbookTitle": "Návštevná kniha ✍️",
+    "guestbookDescription": "Nechaj mi tu odkaz, že si tu bol! Dáta sa ukladajú cez Prismu do Postgresu.",
+    "entriesTitle": "Posledné odkazy:",
+    "noEntries": "Zatiaľ žiadne správy.",
+    "phone": "Telefón"
+  },
+  "guestbookForm": {
+    "fieldName": "Meno",
+    "fieldMessage": "Správa",
+    "submitButton": "Odoslať odkaz",
+    "successMessage": "Odkaz bol úspešne odoslaný!"
+  },
+  "footer": {
+    "subtitle": "Full-stack Developer špecializujúci sa na Next.js a React.",
+    "description": "Jaroslav Pecha. Všetky práva vyhradené. Postavené na Next.js & MUI."
+  }
+}

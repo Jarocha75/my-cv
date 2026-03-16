@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Box,
   Container,
@@ -9,15 +11,12 @@ import {
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
+import { useTranslations } from 'next-intl';
 
-const INTRO = {
-  title: 'Jaroslav Pecha',
-  subtitle: 'Full-stack Developer špecializujúci sa na Next.js a React.',
-  description:
-    'Jaroslav Pecha. Všetky práva vyhradené. Postavené na Next.js 15 & MUI.',
-};
+const TITLE = 'Jaroslav Pecha';
 
 const Footer = () => {
+  const t = useTranslations('footer');
   const currentYear = new Date().getFullYear();
 
   return (
@@ -34,10 +33,10 @@ const Footer = () => {
         >
           <Box>
             <Typography variant="h6" fontWeight={700} color="primary">
-              {INTRO.title}
+              {TITLE}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {INTRO.subtitle}
+              {t('subtitle')}
             </Typography>
           </Box>
 
@@ -71,7 +70,7 @@ const Footer = () => {
         <Divider sx={{ my: 3 }} />
 
         <Typography variant="body2" color="text.secondary" align="center">
-          © {currentYear} {INTRO.description}
+          © {currentYear} {t('description')}
         </Typography>
       </Container>
     </Box>
