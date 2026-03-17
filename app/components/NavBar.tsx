@@ -129,7 +129,7 @@ const NavBar = () => {
           </Box>
 
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton color="inherit" onClick={handleDrawerToggle}>
+            <IconButton color="inherit" onClick={handleDrawerToggle} aria-label="menu">
               <MenuIcon />
             </IconButton>
           </Box>
