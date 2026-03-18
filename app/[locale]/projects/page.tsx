@@ -25,9 +25,14 @@ const CARD_MEDIA_HEIGHT = {
 export default async function ProjectsPage() {
   const t = await getTranslations('projects');
   const locale = await getLocale();
-  const projects = await prisma.project.findMany({
-    orderBy: [{ isFeatured: 'desc' }, { createdAt: 'asc' }],
-  });
+  let projects: Awaited<ReturnType<typeof prisma.project.findMany>> = [];
+  try {
+    projects = await prisma.project.findMany({
+      orderBy: [{ isFeatured: 'desc' }, { createdAt: 'asc' }],
+    });
+  } catch {
+    // DB nedostupná (napr. v testovacom prostredí)
+  }
 
   return (
     <Container maxWidth="lg" sx={{ py: 8 }}>
