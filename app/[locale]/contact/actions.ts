@@ -20,9 +20,13 @@ export async function createEntry(
     return { errors: z.flattenError(result.error).fieldErrors };
   }
 
-  await prisma.guestbookEntry.create({
-    data: result.data,
-  });
+  try {
+    await prisma.guestbookEntry.create({
+      data: result.data,
+    });
+  } catch {
+    return { errors: { name: ['Nastala chyba pri ukladaní. Skús to neskôr.'] } };
+  }
 
   revalidatePath('/contact');
   return { success: true };

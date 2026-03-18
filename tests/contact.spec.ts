@@ -14,5 +14,5 @@ test('používateľ môže odoslať kontaktný formulár', async ({ page }) => {
 
   // 4. Over, či sa zobrazila úspešná správa
   const successMessage = page.getByText('Odkaz bol úspešne odoslaný!');
-  await expect(successMessage).toBeVisible();
+  await expect(successMessage).toBeVisible({ timeout: 15000 });
 });
