@@ -10,11 +10,13 @@ export const managingSkills = [
   { name: 'Git & GitHub', level: 85 },
   { name: 'Jira / Trello', level: 75 },
   { name: 'Code Review', level: 70 },
+  { name: 'GitHub Actions', level: 65 },
+  { name: 'Playwright', level: 60 },
 ];
 
 export const languageSkills = [
   { name: 'Slovenčina', level: 100 },
   { name: 'Angličtina', level: 80 },
-  { name: 'Nemčina', level: 70 },
   { name: 'Čeština', level: 70 },
+  { name: 'Nemčina', level: 50 },
 ];

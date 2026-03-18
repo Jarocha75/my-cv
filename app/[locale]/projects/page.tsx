@@ -69,10 +69,9 @@ export default async function ProjectsPage() {
                 }
                 src={project.videoUrl ? project.videoUrl : undefined}
                 alt={project.title}
-                controls={!!project.videoUrl}
-                autoPlay={!!project.videoUrl}
-                muted={!!project.videoUrl}
-                loop={!!project.videoUrl}
+                {...(project.videoUrl
+                  ? { controls: true, autoPlay: true, muted: true, loop: true }
+                  : {})}
                 sx={{
                   objectFit: 'cover',
                   height: project.isFeatured ? CARD_MEDIA_HEIGHT.featured : CARD_MEDIA_HEIGHT.regular,
