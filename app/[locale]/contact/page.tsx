@@ -23,10 +23,15 @@ const PAPER_BORDER = '1px solid rgba(255, 255, 255, 0.08)';
 export default async function ContactPage() {
   const t = await getTranslations('contact');
   const locale = await getLocale();
-  const entries = await prisma.guestbookEntry.findMany({
-    orderBy: { createdAt: 'desc' },
-    take: GUESTBOOK_ENTRIES_LIMIT,
-  });
+  let entries: Awaited<ReturnType<typeof prisma.guestbookEntry.findMany>> = [];
+  try {
+    entries = await prisma.guestbookEntry.findMany({
+      orderBy: { createdAt: 'desc' },
+      take: GUESTBOOK_ENTRIES_LIMIT,
+    });
+  } catch {
+    // DB nedostupná
+  }
 
   return (
     <Container maxWidth="md" sx={{ py: 8 }}>
