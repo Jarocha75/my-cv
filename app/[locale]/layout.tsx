@@ -15,8 +15,34 @@ import { Analytics } from '@vercel/analytics/react';
 const geist = Geist({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Jaro | Frontend Developer',
-  description: 'React & TypeScript Developer Portfolio',
+  title: 'Jaro | Frontend Developer Portfólio',
+  description:
+    'Osobné portfólio v React, Next.js a TypeScript. Pozrite si moje projekty a moderné webové riešenia.',
+
+  openGraph: {
+    title: 'Jaro | Frontend Developer',
+    description:
+      'Interaktívne CV a projekty zamerané na čistý kód a moderné technológie.',
+    url: 'https://my-cv-three-cyan.vercel.app',
+    siteName: 'Jaro Dev Portfolio',
+    locale: 'sk_SK',
+    type: 'website',
+    images: [
+      {
+        url: '/images/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Jaro Developer Portfólio - Who am I sekcia',
+      },
+    ],
+  },
+
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Jaro | Frontend Developer',
+    description: 'Interaktívne CV a projekty v React/Next.js.',
+    images: ['/images/og-image.png'],
+  },
 };
 
 export default async function LocaleLayout({
